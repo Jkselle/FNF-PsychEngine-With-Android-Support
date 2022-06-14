@@ -47,10 +47,10 @@ class AndroidControlsMenu extends MusicBeatState
 		titleText.alpha = 0.4;
 		add(titleText);
 
-		resetButton = new FlxButton(FlxG.width - 200, 50, "Reset Positions", function()
+		resetButton = new FlxButton(FlxG.width - 200, 50, "Reset", function()
 		{
 			if (resetButton.visible)
-				reset();
+				openSubState(new Prompt('This action will clear current positions of the pad.\n\nProceed?', 0, reset(), null, false));
 		});
 		resetButton.setGraphicSize(Std.int(resetButton.width) * 3);
 		resetButton.label.setFormat(null, 16, 0x333333, "center");
@@ -263,14 +263,14 @@ class AndroidControlsMenu extends MusicBeatState
 
 	function reset():Void
 	{
-		vpad.buttonUp.y = FlxG.height - 300;
 		vpad.buttonUp.x = FlxG.width - 258;
-		vpad.buttonDown.y = FlxG.height - 195;
+		vpad.buttonUp.y = FlxG.height - 408;
 		vpad.buttonDown.x = FlxG.width - 258;
-		vpad.buttonRight.y = FlxG.height - 341;
+		vpad.buttonDown.y = FlxG.height - 201;
 		vpad.buttonRight.x = FlxG.width - 132;
-		vpad.buttonLeft.y = FlxG.height - 341;
+		vpad.buttonRight.y = FlxG.height - 309;
 		vpad.buttonLeft.x = FlxG.width - 384;
+		vpad.buttonLeft.y = FlxG.height - 309;
 	}
 
 	function loadCustom():Void

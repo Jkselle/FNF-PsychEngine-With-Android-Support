@@ -1582,8 +1582,13 @@ class ChartingState extends MusicBeatState
 				dummyArrow.x = Math.floor(touch.x / GRID_SIZE) * GRID_SIZE;
 				if (FlxG.keys.pressed.SHIFT #if android || _virtualpad.buttonY.pressed #end)
 					dummyArrow.y = touch.y;
-				else
-					dummyArrow.y = Math.floor(touch.y / GRID_SIZE) * GRID_SIZE;
+				else{
+					var time = getStrumTime(touch.y);
+					var beat = Conductor.getBeat(time + sectionStartTime());
+					var snap = 4/quantization;
+					var y = getYfromStrum(Conductor.beatToSeconds(Math.floor(beat / snap) * snap) - sectionStartTime());
+					dummyArrow.y = y;
+				}
 			}else{
 				dummyArrow.visible = false;
 			}
